@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mx-0;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl sm:text-2xl;
+  }
+
+  h5 {
+    @apply text-lg sm:text-xl;
+  }
+
+  h6 {
+    @apply text-lg;
+  }
+}
+
+/* For the base HTML and body tags: set padding/margin, font, etc */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Outfit Variable", system-ui, sans-serif;
+  letter-spacing: 0.2px;
+  scroll-behavior: smooth;
+}
+
+/* Adjust scroll-padding-top to give padding before the #linked content */
+html {
+  scroll-padding-top: 100px;
+}
+
+/* Change selection background */
+::selection {
+  @apply bg-lime-400 text-white;
+  text-shadow: none;
+}
+
+/* Increase paragraph tag size default to tailwind-xl */
+p {
+  font-size: 1.25rem;
+  /* 20px - xl */
+  line-height: 1.75rem;
+  /* 28px - 7 */
+}
+
+/* Custom Font */
+.merienda {
+  font-family: "Merienda", sans-serif;
+  font-weight: 400;
+}
+
+@supports (font-variation-settings: normal) {
+  .merienda {
+      font-family: "Merienda Variable", sans-serif;
+      font-weight: 400;
+      font-variation-settings: "wdth" 75, "wght" 500;
+  }
+}
+
+/* Link Tags */
+a {
+  @apply text-lime-500;
+  font-size: 1.25rem;
+  /* 20px - xl */
+  line-height: 1.75rem;
+  /* 28px - 7 */
+  text-decoration: underline;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 100ms;
+}
+
+a:hover {
+  @apply text-lime-400;
+  text-decoration: none;
+}
+
+a:focus {
+  @apply text-lime-600;
+  text-decoration: underline;
+}
+
+a:active {
+  @apply text-lime-600;
+  text-decoration: underline;
+}
+
+/* Button */
+.button {
+  @apply bg-gray-100 p-2 rounded-md border border-gray-200 focus:outline-none focus:ring focus:ring-lime-600 focus:border-lime-600 transition-all duration-100 ease-in-out shadow-sm hover:shadow-md hover:border-lime-400 hover:ring-lime-400 hover:bg-gray-100 cursor-pointer text-lime-500 no-underline text-lg;
+}
+
+.button:hover {
+  @apply text-lime-400;
+  text-decoration: none;
+}
+
+.button:focus {
+  @apply text-lime-600;
+  text-decoration: underline;
+}
+
+.button:active {
+  @apply text-lime-600;
+  text-decoration: underline;
+}
+
+/* Images */
+img {
+  @apply bg-gray-400 flex align-middle items-center justify-center text-center text-gray-200 overflow-hidden;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Skip Link */
+@media only screen and (min-width: 0em) {
+  .skip {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1111111;
+  }
+}
+
+/* Masking */
+.mask-to-t {
+  mask: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, transparent 100%);
+}
+.mask-to-t-10 {
+  mask: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, transparent 100%);
+}

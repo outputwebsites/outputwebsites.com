@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import { getCurrentYear } from "@js/utils";
+
+const details = await getCollection("details");
+const currentYear = getCurrentYear();
+---
+
+<footer
+  id="footer"
+  class="bg-gray-100 pt-16 pb-2 flex flex-col justify-center items-center"
+>
+  <section
+    id="footer-container"
+    class="flex flex-col lg:flex-row justify-center item-start max-md:items-middle lg:items-start align-top w-full gap-0 mx-auto max-w-screen-lg"
+  >
+    <section
+      id="footer-logo"
+      class="flex flex-col text-center justify-center align-middle items-center sm:min-w-[350px] px-3"
+    >
+      <a title={details[0].data.name} href="/">
+        <img
+          src="/assets/svgs/logotype_black.svg"
+          alt={details[0].data.name}
+          width="350"
+          height="350"
+          decoding="async"
+          loading="lazy"
+          class="bg-transparent"
+        />
+      </a>
+    </section>
+  </section>
+
+  <section
+    id="footer-credits"
+    class="flex flex-col text-center mt-16 py-8 px-3"
+  >
+    <p class="text-xs text-gray-400">
+      Output Websites LLC is owned and operated by <a
+        href="https://derek-perry.com"
+        target="_blank"
+        rel="noopener"
+        class="text-gray-400 text-xs">Derek Perry</a
+      >
+    </p>
+    <p id="copyright" class="text-xs text-gray-400">
+      Copyright 2024 - {currentYear}
+    </p>
+  </section>
+</footer>

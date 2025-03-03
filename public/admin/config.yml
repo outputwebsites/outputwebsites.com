@@ -1,0 +1,35 @@
+# See full Decap documentation for further configuration: https://decapcms.org/docs/intro/
+backend:
+  name: git-gateway
+  repo: outputwebsites/outputwebsites.com # Path to the relevant GitHub repository: owner-name/repo-name
+  branch: main # Branch to update, defaults to master
+local_backend: true
+editor:
+  preview: false
+media_folder: src/assets/images/media # Location where files will be stored in the repo - we store them in src so that Astro can optimize them.
+public_folder: src/assets/images/media # Ensure that this path is the same as the media_folder path above.
+logo_url: https://outputwebsites.com/assets/svgs/logotype_black.svg # change url to a link to the image you want to use, no file paths, must be a URL
+display_url: https://OutputWebsites.com
+collections:
+# Define the collections that will be available in the CMS. Collections Docs = https://decapcms.org/docs/collection-folder  |  Widgets Docs = https://decapcms.org/docs/widgets
+- label: "Business Details" # Used in the admin dashboard UI
+  name: "details" # Used in routes, e.g., /admin/collections/blog. Is also the key when fetching data from the CMS.
+  files:
+  - label: "Business Details" # Used in the admin dashboard UI
+    name: "details" # Used in routes, e.g., /admin/collections/blog. Is also the key when fetching data from the CMS.
+    file: "src/content/details/details.yml" # The path to the folder where the documents are stored
+    fields:
+    - { label: "Name", name: "name", widget: "string", hint: "Full name of the business." }
+    - { label: "Email", name: "email", widget: "string", hint: "Email of the business." }
+    - { label: "Phone Number", name: "phone", widget: "string", hint: "Main/office telephone number of the business. Use (000) 000-0000 format." }
+    - { label: "Description", name: "description", widget: "text", hint: "Short description of the business. (Max 1-2 sentences (140 character max)." }
+    - { label: "Domain", name: "domain", widget: "string", hint: "Domain name (website link/URL) of the business." }
+    - label: "Keywords"
+      name: "keywords"
+      label_singular: "Keyword"
+      widget: "list"
+      add_to_top: true
+      collapsed: true
+      minimize_collapsed: true
+      summary: "{{fields.keyword}}"
+      field: { label: Keyword, name: keyword, widget: string, hint: "Keyword that describes any aspect of the business which someone may use to search for the business." }

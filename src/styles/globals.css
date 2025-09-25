@@ -1,8 +1,93 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    Outfit Variable, ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: rgb(229, 231, 235);
+    /* gray-200 */
+  }
+}
+
+@utility button {
+  background-color: #7f1d1d;
+  border-radius: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+  color: white;
+  text-decoration: none;
+  text-decoration-line: none;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+  font-family: "Outfit Variable", sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: rgb(168, 162, 158);
+    /* stone-400 */
+    text-decoration: none;
+    text-decoration-line: none;
+  }
+
+  &:focus {
+    color: rgb(38, 38, 38);
+    /* stone-800 */
+    background-color: rgb(231, 229, 228);
+    /* stone-200 */
+    text-decoration: none;
+    text-decoration-line: none;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
 
 @layer base {
+
+  /* For the base HTML and body tags: set padding/margin, font, etc */
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: "Outfit Variable", system-ui, sans-serif;
+    letter-spacing: 0.2px;
+    scroll-behavior: smooth;
+    background-color: white;
+    color: black;
+  }
+
+  /* Change selection background */
+  ::selection {
+    background-color: rgb(2, 132, 199);
+    /* sky-600 */
+    color: white;
+    text-shadow: none;
+  }
 
   h1,
   h2,
@@ -10,130 +95,266 @@
   h4,
   h5,
   h6 {
-    @apply mx-0;
+    margin-inline: 0;
   }
 
   h1 {
-    @apply text-4xl sm:text-5xl;
+    /* Font size = 4xl */
+    font-size: 2.25rem;
+    /* 2.25rem (36px) */
+    line-height: calc(2.5 / 2.25);
+    /* calc(2.5 / 2.25) */
   }
 
   h2 {
-    @apply text-3xl sm:text-4xl;
+    /* Font size = 3xl */
+    font-size: 1.875rem;
+    /* 1.875rem (30px) */
+    line-height: calc(2.25 / 1.875);
+    /* calc(2.25 / 1.875) */
   }
 
   h3 {
-    @apply text-2xl sm:text-3xl;
+    /* Font size = 2xl */
+    font-size: 1.5rem;
+    /* 1.5rem (24px) */
+    line-height: calc(2 / 1.5);
+    /* calc(2 / 1.5) */
   }
 
   h4 {
-    @apply text-xl sm:text-2xl;
+    /* Font size = xl */
+    font-size: 1.25rem;
+    /* 1.25rem (20px) */
+    line-height: calc(1.75 / 1.25);
+    /* calc(1.75 / 1.25) */
   }
 
   h5 {
-    @apply text-lg sm:text-xl;
+    /* Font size = lg */
+    font-size: 1.125rem;
+    /* 1.125rem (18px) */
+    line-height: calc(1.75 / 1.125);
+    /* calc(1.75 / 1.125) */
   }
 
   h6 {
-    @apply text-lg;
+    /* Font size = lg */
+    font-size: 1.125rem;
+    /* 1.125rem (18px) */
+    line-height: calc(1.75 / 1.125);
+    /* calc(1.75 / 1.125) */
+  }
+
+  /* Increase paragraph tag size default to tailwind-xl */
+  p {
+    font-size: 1.25rem;
+    /* 20px - xl */
+    line-height: 1.75rem;
+    /* 28px - 7 */
+  }
+
+  /* Link Tags */
+  a {
+    color: rgb(63,98,18);
+    /* lime-800 */
+    font-size: 1.25rem;
+    /* 20px - xl */
+    line-height: 1.75rem;
+    /* 28px - 7 */
+    text-decoration: underline;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 100ms;
+  }
+
+  a:hover {
+    color: rgb(26,46,5);
+    /* lime-950 */
+    text-decoration: none;
+  }
+
+  a:focus {
+    color: rgb(54,83,20);
+    /* lime-900 */
+    text-decoration: underline;
+  }
+
+  a:active {
+    color: rgb(54,83,20);
+    /* lime-900 */
+    text-decoration: underline;
+  }
+
+  /* Button */
+  .button {
+    cursor: pointer;
+    border-radius: 0.375rem;
+    border-width: 1px;
+    color: rgb(63,98,18);
+    /* lime-800 */
+    background-color: rgb(243, 244, 246);
+    /* gray-100 */
+    padding: 0.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    text-decoration-line: none;
+    box-shadow: 0 0 0 0px #fff, 0 0 0 calc(3px + 0px) rgb(59, 130, 246, 0.5), 0 0 #0000;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 100ms;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+
+  .button:hover {
+    color: rgb(26,46,5);
+    /* lime-950 */
+    text-decoration: none;
+  }
+
+  .button:focus {
+    color: rgb(54,83,20);
+    /* lime-900 */
+    text-decoration: underline;
+  }
+
+  .button:active {
+    color: rgb(54,83,20);
+    /* lime-900 */
+    text-decoration: underline;
+  }
+
+  /* Images */
+  img {
+    font-size: 0.875rem;
+    /* 0.875rem (14px) */
+    line-height: calc(1.25 / 0.875);
+    /* calc(1.25 / 0.875) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    overflow: hidden;
+    text-align: center;
+    max-width: 100%;
+    height: auto;
+    color: rgb(153, 161, 175);
+    /* gray-400 */
+    background-color: black;
+  }
+
+  /* Lists */
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+    counter-reset: item;
+  }
+
+  ul ul,
+  ol ul {
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-left: 1rem;
+    /* 16px */
+  }
+
+  ol ol,
+  ul ol {
+    list-style-type: lower-latin;
+    list-style-position: inside;
+    margin-left: 1rem;
+    /* 16px */
+  }
+
+  li>p,
+  li>h1,
+  li>h2,
+  li>h3,
+  li>h4,
+  li>h5,
+  li>h6 {
+    display: inline-block;
+  }
+
+  ol>li {
+    counter-increment: item;
+  }
+
+  ol ol>li {
+    display: block;
+  }
+
+  ol ol>li:before {
+    content: counters(item, ".") " ";
+  }
+
+  /* Abbreviations */
+  abbr {
+    text-decoration: underline dotted;
+    cursor: help;
+  }
+
+  abbr:hover {
+    text-decoration: underline;
+  }
+
+  dfn>abbr[title]::after {
+    content: " (" attr(title) ")";
   }
 }
 
-/* For the base HTML and body tags: set padding/margin, font, etc */
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: "Outfit Variable", system-ui, sans-serif;
-  letter-spacing: 0.2px;
-  scroll-behavior: smooth;
-}
-
-/* Adjust scroll-padding-top to give padding before the #linked content */
-html {
-  scroll-padding-top: 100px;
-}
-
-/* Change selection background */
-::selection {
-  @apply bg-lime-400 text-white;
-  text-shadow: none;
-}
-
-/* Increase paragraph tag size default to tailwind-xl */
-p {
-  font-size: 1.25rem;
-  /* 20px - xl */
-  line-height: 1.75rem;
-  /* 28px - 7 */
-}
-
-/* Custom Font */
-.merienda {
-  font-family: "Merienda", sans-serif;
-  font-weight: 400;
-}
-
-@supports (font-variation-settings: normal) {
-  .merienda {
-      font-family: "Merienda Variable", sans-serif;
-      font-weight: 400;
-      font-variation-settings: "wdth" 75, "wght" 500;
+/* Responsive Breakpoint - SM */
+@media (width >=48rem) {
+  h1 {
+    /* Font size = 5xl */
+    font-size: 3rem;
+    /* 3rem (48px) */
+    line-height: 1;
+    /* 1 */
   }
-}
 
-/* Link Tags */
-a {
-  @apply text-lime-500;
-  font-size: 1.25rem;
-  /* 20px - xl */
-  line-height: 1.75rem;
-  /* 28px - 7 */
-  text-decoration: underline;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 100ms;
-}
+  h2 {
+    /* Font size = 4xl */
+    font-size: 2.25rem;
+    /* 2.25rem (36px) */
+    line-height: calc(2.5 / 2.25);
+    /* calc(2.5 / 2.25) */
+  }
 
-a:hover {
-  @apply text-lime-400;
-  text-decoration: none;
-}
+  h3 {
+    /* Font size = 3xl */
+    font-size: 1.875rem;
+    /* 1.875rem (30px) */
+    line-height: calc(2.25 / 1.875);
+    /* calc(2.25 / 1.875) */
+  }
 
-a:focus {
-  @apply text-lime-600;
-  text-decoration: underline;
-}
+  h4 {
+    /* Font size = 2xl */
+    font-size: 1.5rem;
+    /* 1.5rem (24px) */
+    line-height: calc(2 / 1.5);
+    /* calc(2 / 1.5) */
+  }
 
-a:active {
-  @apply text-lime-600;
-  text-decoration: underline;
-}
-
-/* Button */
-.button {
-  @apply bg-gray-100 p-2 rounded-md border border-gray-200 focus:outline-none focus:ring focus:ring-lime-600 focus:border-lime-600 transition-all duration-100 ease-in-out shadow-sm hover:shadow-md hover:border-lime-400 hover:ring-lime-400 hover:bg-gray-100 cursor-pointer text-lime-500 no-underline text-lg;
-}
-
-.button:hover {
-  @apply text-lime-400;
-  text-decoration: none;
-}
-
-.button:focus {
-  @apply text-lime-600;
-  text-decoration: underline;
-}
-
-.button:active {
-  @apply text-lime-600;
-  text-decoration: underline;
-}
-
-/* Images */
-img {
-  @apply bg-gray-400 flex align-middle items-center justify-center text-center text-gray-200 overflow-hidden;
-  max-width: 100%;
-  height: auto;
+  h5 {
+    /* Font size = xl */
+    font-size: 1.25rem;
+    /* 1.25rem (20px) */
+    line-height: calc(1.75 / 1.25);
+    /* calc(1.75 / 1.25) */
+  }
 }
 
 /* Skip Link */
@@ -145,12 +366,4 @@ img {
     left: 0;
     z-index: -1111111;
   }
-}
-
-/* Masking */
-.mask-to-t {
-  mask: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, transparent 100%);
-}
-.mask-to-t-10 {
-  mask: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, transparent 100%);
 }
